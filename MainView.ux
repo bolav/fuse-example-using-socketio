@@ -1,11 +1,9 @@
-<App Theme="Basic">
-	<LoadModules />
+<App>
 	<JavaScript>
 	var Observable = require('FuseJS/Observable');
 	var msgs = Observable();
-	var debug = require('debug/debug');
-	debug.enable("");
-	var socket = require('socket.io-client')("http://localhost:3000/", { "forceBase64" : 1 });
+
+	var socket = require('socket.io-1.4.5.js')("http://localhost:3000/", { "forceBase64" : 1 });
 
 	socket.on('connect', function () { console.log("socket connected"); });
 	socket.on('chat message', function(msg){
@@ -19,6 +17,7 @@
 	module.exports.msgs = msgs;
 	module.exports.txt = txt;
 	module.exports.sendClick = function () {
+		console.log("sendClick: " + txt.value);
 		socket.emit('chat message', txt.value);
 		txt.value = "";
 	};
@@ -32,8 +31,8 @@
 			</StackPanel>
 		</ScrollView>
 		<StackPanel Orientation="Horizontal" Dock="Bottom">
-			<TextInput Width="250" Value="{txt}" />
-			<Button Text="Send" Clicked="{sendClick}" />
+			<Basic.TextInput Width="250" Value="{txt}" />
+			<Basic.Button Text="Send" Clicked="{sendClick}" />
 		</StackPanel>
 	</DockPanel>
 </App>
