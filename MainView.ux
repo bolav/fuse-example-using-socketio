@@ -1,11 +1,9 @@
-<App Theme="Basic">
-	<LoadModules />
+<App>
 	<JavaScript>
 	var Observable = require('FuseJS/Observable');
 	var msgs = Observable();
-	var debug = require('debug/debug');
-	debug.enable("");
-	var socket = require('socket.io-client')("http://localhost:3000/", { "forceBase64" : 1 });
+
+	var socket = require('socket.io-1.4.5.js')("http://localhost:3000/", { "forceBase64" : 1 });
 
 	socket.on('connect', function () { console.log("socket connected"); });
 	socket.on('chat message', function(msg){
