@@ -17,6 +17,7 @@
 	module.exports.msgs = msgs;
 	module.exports.txt = txt;
 	module.exports.sendClick = function () {
+		console.log("sendClick: " + txt.value);
 		socket.emit('chat message', txt.value);
 		txt.value = "";
 	};
@@ -30,8 +31,8 @@
 			</StackPanel>
 		</ScrollView>
 		<StackPanel Orientation="Horizontal" Dock="Bottom">
-			<TextInput Width="250" Value="{txt}" />
-			<Button Text="Send" Clicked="{sendClick}" />
+			<Basic.TextInput Width="250" Value="{txt}" />
+			<Basic.Button Text="Send" Clicked="{sendClick}" />
 		</StackPanel>
 	</DockPanel>
 </App>
